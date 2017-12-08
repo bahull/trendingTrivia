@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 
 <head>
   <meta charset="utf-8">
@@ -13,11 +13,12 @@
   <header>
     <div></div>
     <h1>Trivia Trends</h1>
-    <button><span>+</span> Add Question</button>
+    <button>
+      <span>+</span> Add Question</button>
   </header>
   <article>
     <nav>
-      <a>All Questions</a>
+      <a ui-sref="listAll">All Questions</a>
       <a>Easy</a>
       <a>Medium</a>
       <a>Hard</a>
@@ -29,35 +30,45 @@
 
     <!-- Questions go here -->
 
+    <ui-view></ui-view>
+
   </article>
 
-  <div class="modal">
+
+
+
+
+
+  <div class="modal" ng-show="$root.showModal">
     <form>
-      <h4 class="close">X</h4>
-      <span>Question</span><input type="text" ng-model="<!-- Question -->">
-      <span>Animal it's about</span><input type="text" ng-model="<!-- Animal -->">
+      <h4 class="close" ng-click="$root.showModalFunction()">X</h4>
+      <span>Question{{listAllCtrl.showModal}}</span>
+
+      <input type="text" ng-model="listAllCtrl.allQuestion.question">
+      <span>Animal it's about</span>
+      <input type="text" ng-model="listAllCtrl.allQuestions.animal">
       <span>Difficulty</span>
       <div class="range">
-        <input type="range" min="1" max="3" ng-model="<!-- Difficulty -->">
+        <input type="range" min="1" max="3" ng-model="listAllCtrl.allQuestions.difficulty">
 
         <h5>{{newQuestion.difficulty}}</h5>
       </div>
       <h4>Options</h4>
       <div>
-        <input type="radio" ng-model="" value="1">
-        <input type="text" ng-model="">
+        <input type="radio" ng-model="listAllCtrl.allQuestions.options[1]" value="1">
+        <input type="text" ng-model="listAllCtrl.allQuestions.options[1]">
       </div>
       <div>
-        <input type="radio" ng-model="" value="2">
-        <input type="text" ng-model="">
+        <input type="radio" ng-model="listAllCtrl.allQuestions.options[2]" value="2">
+        <input type="text" ng-model="listAllCtrl.allQuestions.options[2]">
       </div>
       <div>
-        <input type="radio" ng-model="" value="3">
-        <input type="text" ng-model="">
+        <input type="radio" ng-model="listAllCtrl.allQuestions.options[3]" value="3">
+        <input type="text" ng-model="listAllCtrl.allQuestions.options[3]">
       </div>
       <div>
-        <input type="radio" ng-model="" value="4">
-        <input type="text" ng-model="">
+        <input type="radio" ng-model="listAllCtrl.allQuestions.options[4]" value="4">
+        <input type="text" ng-model="listAllCtrl.allQuestions.options[4]">
       </div>
 
       <!--Add question buttons-->
@@ -81,7 +92,10 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js" charset="utf-8"></script>
-  <script src="./app.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+  <script src="app/app.js" charset="utf-8"></script>
+  <script src="app/listAll/listAll.component.js"></script>
+  <script src="app/services/questionSrvc.js"></script>
 </body>
 
 </html>
