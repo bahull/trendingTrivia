@@ -10,4 +10,11 @@ angular.module("app").service("questionSrvc", function($http) {
       .delete(`https://practiceapi.devmountain.com/api/trivia/questions/${obj}`)
       .then(response => console.log(response));
   };
+
+  this.postNewQuestion = function(obj) {
+    return $http.post(
+      "https://practiceapi.devmountain.com/api/trivia/questions",
+      obj
+    );
+  };
 });

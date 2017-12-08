@@ -10,11 +10,62 @@
 </head>
 
 <body>
-  <header>
+  <header ng-controller="createNewCtrl">
     <div></div>
     <h1>Trivia Trends</h1>
-    <button>
-      <span>+</span> Add Question</button>
+    <button ng-click="showModalFunction()">
+      <span>+</span> NEW PSOT </button>
+
+    <div class="modal" ng-show="showModal">
+      <form>
+        <h4 class="close" ng-click="showModalFunction()">X</h4>
+        <span>Question</span>
+
+        <input type="text" ng-model="newPost.question">
+
+
+        <span>Animal it's about</span>
+        <input type="text" ng-model="newPost.animal">
+        <span>Difficulty</span>
+        <div class="range">
+          <input type="range" min="1" max="3" ng-model="newPost.difficulty">
+
+          <h5>{{newPost.difficulty}}</h5>
+        </div>
+        <h4>Options</h4>
+        <div>
+          <input type="radio" name="correct" ng-model="newPost.correct_answer" value="1">
+          <input type="text" ng-model="newPost.options[1]">
+        </div>
+        <div>
+          <input type="radio" name="correct" ng-model="newPost.correct_answer" value="2">
+          <input type="text" ng-model="newPost.options[2]">
+        </div>
+        <div>
+          <input type="radio" name="correct" ng-model="newPost.correct_answer" value="3">
+          <input type="text" ng-model="newPost.options[3]">
+        </div>
+        <div>
+          <input type="radio" name="correct" ng-model="newPost.correct_answer" value="4">
+          <input type="text" ng-model="newPost.options[4]">
+        </div>
+
+        <!--Add question buttons-->
+        <div class="buttons">
+          <button class="green">Save Question</button>
+          <button>Cancel</button>
+        </div>
+
+        <!--Edit & Delete question buttons-->
+        <div class="buttons">
+          <button class="red" ng-click="listAllCtrl.deleteQuestion(listAllCtrl.currentIndex)">Delete Question</button>
+          <button class="green" ng-click="newFunction()">Save Changes</button>
+          <button>Cancel</button>
+        </div>
+
+      </form>
+    </div>
+
   </header>
   <article>
     <nav>
@@ -29,8 +80,8 @@
     </div>
 
     <!-- Questions go here -->
-
-    <ui-view></ui-view>
+    {{newPost}}
+    <ui-view />
 
   </article>
 
@@ -49,7 +100,7 @@
   <script src="app/app.js" charset="utf-8"></script>
   <script src="app/listAll/listAll.component.js"></script>
   <script src="app/services/questionSrvc.js"></script>
-  <script src="app/createNew/createNew.component.js"></script>
+  <script src="app/createNew/createNewCtrl.js"></script>
 </body>
 
 </html>
