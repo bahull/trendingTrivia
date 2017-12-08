@@ -1,9 +1,9 @@
-<div class="question-wrapper" ng-if="listAllCtrl.allQuestions" ng-repeat="question in listAllCtrl.allQuestions">
+<div class="question-wrapper" ng-if="listAllCtrl.allQuestions" ng-repeat="question in listAllCtrl.allQuestions track by $index">
     <h3>{{question.question}}</h3>
     <div ng-class="{green: question.difficulty == '1', yellow: question.difficulty == '2', red: question.difficulty == '3'}">
         {{question.difficulty}}</div>
 
-    <div class="gear" ng-click="listAllCtrl.showModalFunction()">
+    <div class="gear" ng-click="listAllCtrl.showModalFunction($index)">
         <img src="./styles/assets/gear.svg" alt="" />
     </div>
     <ul>
@@ -16,8 +16,50 @@
 
 
 
+<div class="modal" ng-show="listAllCtrl.showModal">
+    <form>
+        <h4 class="close" ng-click="listAllCtrl.showModalFunction()">X</h4>
+        <span>Question{{listAllCtrl.showModal}}</span>
 
-.question-wrapper > div { float: right; padding: 3px; border-radius: 2px; } .question-wrapper ul { clear: both; display:
-flex; flex-wrap: wrap; } ul li { width: 40%; margin-bottom: 1rem; margin-right: 1rem; text-align: justify; padding: 0.5em;
-} label { padding: 0.5rem; line-height: 1.15rem; } li input { float: left; } ul li label:hover, input:hover + label { opacity:
-0.65; } label, input[type="radio"], input[type="range"] { cursor: pointer; }
+        <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].question">
+        <span>Animal it's about</span>
+        <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].animal">
+        <span>Difficulty</span>
+        <div class="range">
+            <input type="range" min="1" max="3" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].difficulty">
+
+            <h5>{{newQuestion.difficulty}}</h5>
+        </div>
+        <h4>Options</h4>
+        <div>
+            <input type="radio" ng-model="" value="1">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[1]">
+        </div>
+        <div>
+            <input type="radio" ng-model="" value="2">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[2]">
+        </div>
+        <div>
+            <input type="radio" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[3]" value="3">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[3]">
+        </div>
+        <div>
+            <input type="radio" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[4]" value="4">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[4]">
+        </div>
+
+        <!--Add question buttons-->
+        <div class="buttons">
+            <button class="green">Save Question</button>
+            <button>Cancel</button>
+        </div>
+
+        <!--Edit & Delete question buttons-->
+        <div class="buttons">
+            <button class="red" ng-click="listAllCtrl.deleteQuestion(listAllCtrl.currentIndex)">Delete Question</button>
+            <button class="green">Save Changes</button>
+            <button>Cancel</button>
+        </div>
+
+    </form>
+</div>
