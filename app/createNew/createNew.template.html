@@ -1,0 +1,47 @@
+<div class="modal" ng-show="listAllCtrl.showModal">
+    <form>
+        <h4 class="close" ng-click="listAllCtrl.showModalFunction()">X</h4>
+        <span>Question{{listAllCtrl.showModal}}</span>
+
+        <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].question">
+        <span>Animal it's about</span>
+        <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].animal">
+        <span>Difficulty</span>
+        <div class="range">
+            <input type="range" min="1" max="3" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].difficulty">
+
+            <h5>{{newQuestion.difficulty}}</h5>
+        </div>
+        <h4>Options</h4>
+        <div>
+            <input type="radio" ng-model="" value="1">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[1]">
+        </div>
+        <div>
+            <input type="radio" ng-model="" value="2">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[2]">
+        </div>
+        <div>
+            <input type="radio" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[3]" value="3">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[3]">
+        </div>
+        <div>
+            <input type="radio" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[4]" value="4">
+            <input type="text" ng-model="listAllCtrl.allQuestions[listAllCtrl.currentIndex].options[4]">
+        </div>
+
+        <!--Add question buttons-->
+        <div class="buttons">
+            <button class="green">Save Question</button>
+            <button>Cancel</button>
+        </div>
+
+        <!--Edit & Delete question buttons-->
+        <div class="buttons">
+            <button class="red" ng-click="listAllCtrl.deleteQuestion(listAllCtrl.currentIndex)">Delete Question</button>
+            <button class="green">Save Changes</button>
+            <button>Cancel</button>
+        </div>
+
+    </form>
+</div>
